@@ -28,6 +28,8 @@ fn day_one_part_two(input: &str){
     let mut counter: i32 = 0;
     let mut relevantStepNumber = 1;
     let mut basementReached = true;
+
+    
     while basementReached {
         for item in input.chars() {
         
