@@ -58,3 +58,4 @@ fn day_one_part_one(input: &str){
 
 } */
 
+fn day_two_part_one(){}
