@@ -12,6 +12,7 @@ fn main() {
     //day_two_part_one(INPUT_DAY_TWO);
     //day_two_part_two(INPUT_DAY_TWO);
     day_three_part_one(INPUT_DAY_THREE);
+    day_three_part_two(INPUT_DAY_THREE);
 
 
 }
@@ -177,7 +178,65 @@ fn day_three_part_one(input: &str){
 
 }
 
-fn day_three_part_two(){}
+fn day_three_part_two(input: &str){
+    //initialize position for santa and robo santa, santa takes the first move
+    let mut position_santa: (i32, i32) = (0,0);
+    let mut position_robo: (i32, i32) = (0,0);
+    let mut santas_move: bool = true;
+    let mut visited_houses: Vec<(i32, i32)> = Vec::new();
+
+    //parse input in for loop
+    for step in input.chars(){
+        if santas_move {
+            //santas positions are calculated here
+            match step {
+                '>' => {
+                    position_santa.1 += 1;
+                },
+                '<'=> {
+                    position_santa.1 -= 1;
+                },
+                'v'=> {
+                    position_santa.0 -= 1;
+                },
+                '^'=> {
+                    position_santa.0 += 1;
+                },
+                _ => unreachable!("Wrong input")  
+            }
+            visited_houses.push(position_santa);
+            santas_move = false;
+
+
+        } else {
+            //robo santas positions are calculated here
+            match step {
+                '>' => {
+                    position_robo.1 += 1;
+                },
+                '<'=> {
+                    position_robo.1 -= 1;
+                },
+                'v'=> {
+                    position_robo.0 -= 1;
+                },
+                '^'=> {
+                    position_robo.0 += 1;
+                },
+                _ => unreachable!("Wrong input")  
+            }
+            visited_houses.push(position_robo);
+            santas_move = true;
+
+        }
+
+    }
+    visited_houses.sort();
+    println!("Total visited houses: {}", visited_houses.len());
+
+    visited_houses.dedup();
+    println!("Individual visited houses: {}", visited_houses.len())
+}
 
 fn day_four_part_one(){}
 
