@@ -1,3 +1,5 @@
+use md5::Digest;
+
 
 
 fn main() {
@@ -13,6 +15,7 @@ fn main() {
     day_two_part_two(INPUT_DAY_TWO);
     day_three_part_one(INPUT_DAY_THREE);
     day_three_part_two(INPUT_DAY_THREE);
+    day_four_part_one(INPUT_DAY_FOUR);
 
 
 }
@@ -243,6 +246,31 @@ fn day_three_part_two(input: &str){
     println!("Individual visited houses: {}", visited_houses.len())
 }
 
-fn day_four_part_one(){}
+fn day_four_part_one(input: &str){
+    println!("Challenge 4 - 1");
+    //initialize check value & number part
+    let mut hash_not_found: bool = true;
+    let mut number_part = 0;
+    //loop to check consecutive 
+    while hash_not_found {
+        
+        //compute the digest
+        let mut hashable_string = String::from(input);
+        let number_string = number_part.to_string();
+        hashable_string.push_str(&number_string);
+        let digest = md5::compute(hashable_string.as_bytes());
+
+        //check if first five digits are 0
+        //implement early exit
+        //println!("Combined value is {}", hashable_string);
+        //println!("Digest for value {} is {:?}", number_part, digest);
+
+        
+        number_part += 1; 
+        if number_part > 100 {
+            hash_not_found = false;
+        }
+    }
+}
 
 fn day_four_part_two(){}
